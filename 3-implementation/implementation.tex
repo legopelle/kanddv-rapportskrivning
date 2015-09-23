@@ -1,0 +1,19 @@
+% !TeX spellcheck = sv_SE
+\section{Implementation}
+
+\todo[inline]{Work in progress}
+
+För att lagra och driva sidan behövs en server. Eftersom sångerna bara består av text behövs inte mycket utrymme för att lagra dem. En bra lösning är att hyra en \emph{virtuell privat server} (\textsc{vps}) eftersom dessa är mycket billiga.
+
+För att websidan skall kunna nås på internet krävs en \emph{webserver}. Mjukvaran måste kunna göra flera saker:
+\begin{enumerate}
+    \item Lagra sånger \label{lst:storesongs}
+    \item Låta nya sånger föras in
+    \item Rendera sångerna som webbsidor
+\end{enumerate}
+
+Den första punkten kan lösas på flera sätt. Ett sätt är att lagra sångerna i en databas. Ett annat är att lagra dem som textfiler på servern. Det finns befintliga system för att strukturera innehåll, s.k. \emph{content management systems}, exempelvis \emph{Wordpress} \cite{wp} eller \emph{Jekyll} \cite{jekyll}. För våra ändamål behöver vi bara ett enkelt system, och Jekyll passar bra för det. Jekyll är skapat för bloggar. Dessa återanvänder ofta mycket av sitt utseende mellan inlägg, och ett smart sätt att slippa dubbelarbete är att separat definiera \emph{utseendet} och \emph{innehållet} separat. Detta är precis vad Jekyll gör. Dessa sammanförs sedan i ett kompileringssteg till en fungera webbsida. Eftersom Jekyll arbetar med textfiler är det så vi kommer lagra sångerna. Jekyll är dock ingen webserver, utan genererar bara webbsidor.
+
+Punkt 3 löses också av Jekyll eftersom den för samman utseendet med innehållet till färdiga websidor. Dessa sidorna har inget dynamiskt innehåll och representeras av vanliga statiska \textsc{html}-filer som kan distribueras av alla webservrar, så det påverkar inte vårt val av webbserver.
+
+Den andra punkten kräver lite mer arbete. Här måste webservern konfigureras för att acceptera input från användaren och skriva till en lokal fil. 

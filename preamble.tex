@@ -1,8 +1,11 @@
-\documentclass[a4paper, parskip=half, twoside]{scrartcl}
+\documentclass[a4paper, parskip, twoside]{scrartcl}
 
 \usepackage[swedish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+\usepackage[backend=bibtex, style=ieee]{biblatex}
+\bibliography{references.bib}
 
 \usepackage{hyperref}
 
@@ -12,10 +15,13 @@
 \fancyhead{}
 \fancyfoot{}
 
-\fancyhead[LE, RO]{P. Engström, 920127-3258}
+\fancyhead[LE, RO]{P. Engström}
 \fancyhead[LO, RE]{\slshape \leftmark\/}
 \fancyfoot[LE, RO]{\thepage}
 
 \addtokomafont{disposition}{\rmfamily}
+
+\title{\Huge Sångbok på nätet \\ \Large Introduktion till Informationsteknologi}
+\author{Per Engström}
 
 \usepackage{todonotes}

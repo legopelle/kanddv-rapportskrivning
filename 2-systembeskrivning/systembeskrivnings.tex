@@ -1,0 +1,12 @@
+% !TeX spellcheck = sv_SE
+\section{Systembeskrivning}
+
+Webbsidan kommer bestå av individuella sidor för varje sång samt ett flertal sidor för att söka och finna sånger (exempelvis efter kategori). Högst upp på varje sida kommer det finnas en menyrad med navigeringsalternativ.
+
+Varje sång kommer presenteras enkelt med sångtitel och sångtext. Designen kommer vara minimalistisk för att inte dra uppmärksamhet från sångkroppen. Det skall finnas kontroller för textens storlek och länkar till relaterade sånger. Menyraden skall innehålla en sökfunktion med dynamiska sångförslag medan sökningen skrivs in. Vid val av förslag tas användaren direkt till sångens sida. Om användaren istället trycker \emph{Sök} skickas de till en resultatsida. Menyn skall även innehålla länkar till webbplatsens andra delar, som \emph{Vett och Etikett}, startsidan och samlingssidor för sångkategorier. För att finna sånger kommer det finns ett register med samtliga sånger. Listan skall kunna filtreras efter kategori eller fritextsökning samt sorteras.
+
+En mycket central del för sångboken är att den skall lätt att använda från mobilen. Detta betyder att det skall vara lätt att läsa och navigera från små skärmar. Detta kan åstadkommas med \emph{responsiv design} som innebär att innehåll och layout anpassar sig efter skärmens storlek. Exempelvis skall menyraden bete sig olika beroende på hur man ser på sidan. För stora skärmar skall den formateras horisontellt med alla länkar synliga, men för mindre skärmar skall den initialt vara kollapsad. Den kan då expanderas för att avslöja länkarna. Det är även viktigt att sångrader inte bryts p.g.a. för små skärmar. Här hjälper funktionen att kunna variera textstorleken.
+
+För personer som använder hjälpmedel för att använda internet, exempelvis synskadade, är det viktigt att webbsidan följer de standarder som finns, exempelvis \textsc{aria} \cite{aria}. Detta betyder att alla komponenter i sidan explicit och korrekt beskriver sin roll, så att eventuella hjälpmedel kan göra sitt jobb.
+
+För att föra in nya sånger krävs en titel, sångtext och kategorier som sången tillhör. Sidan för att lägga till sånger behöver inte heller vara avancerad, utan innehåller bara textfält för titel och sångtext samt en lista av valbara kategorier. Det skall även finnas ett mer programmatiskt sätt att föra in sånger, antingen genom ett programmeringsinterface, ett \textsc{api} (som kan vara hur det grafiska formuläret kommunicerar med servern), eller genom att föra över textfiler direkt till servern.
