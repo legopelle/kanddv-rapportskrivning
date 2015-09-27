@@ -1,19 +1,27 @@
 % !TeX spellcheck = sv_SE
 \section{Implementation}
 
-\todo[inline]{Work in progress}
-
 För att lagra och driva sidan behövs en server. Eftersom sångerna bara består av text behövs inte mycket utrymme för att lagra dem. En bra lösning är att hyra en \emph{virtuell privat server} (\textsc{vps}) eftersom dessa är mycket billiga.
 
-För att websidan skall kunna nås på internet krävs en \emph{webserver}. Mjukvaran måste kunna göra flera saker:
-\begin{enumerate}
-    \item Lagra sånger \label{lst:storesongs}
-    \item Låta nya sånger föras in
-    \item Rendera sångerna som webbsidor
-\end{enumerate}
+Det finns befintliga system för att strukturera innehåll, s.k. \emph{content management systems}, exempelvis \emph{Jekyll} \cite{jekyll}. Jekyll är skapat för bloggar som ofta återanvänder mycket av sitt utseende mellan inlägg, och ett smart sätt att slippa dubbelarbete är att separat definiera \emph{utseendet} och \emph{innehållet}. Detta är precis vad Jekyll gör. Dessa sammanförs sedan i ett kompileringssteg till en fungera webbsida. Eftersom Jekyll arbetar med textfiler är det så vi kommer lagra sångerna. Jekyll är dock ingen webserver, utan genererar bara webbsidor.
 
-Den första punkten kan lösas på flera sätt. Ett sätt är att lagra sångerna i en databas. Ett annat är att lagra dem som textfiler på servern. Det finns befintliga system för att strukturera innehåll, s.k. \emph{content management systems}, exempelvis \emph{Wordpress} \cite{wp} eller \emph{Jekyll} \cite{jekyll}. För våra ändamål behöver vi bara ett enkelt system, och Jekyll passar bra för det. Jekyll är skapat för bloggar. Dessa återanvänder ofta mycket av sitt utseende mellan inlägg, och ett smart sätt att slippa dubbelarbete är att separat definiera \emph{utseendet} och \emph{innehållet} separat. Detta är precis vad Jekyll gör. Dessa sammanförs sedan i ett kompileringssteg till en fungera webbsida. Eftersom Jekyll arbetar med textfiler är det så vi kommer lagra sångerna. Jekyll är dock ingen webserver, utan genererar bara webbsidor.
+Sångerna kommer lagras som läslig klartext (plus lite metainformation). Filerna kompileras via Jekyll med Textile \cite{textile} till \textsc{html}-kod. Textile är ett sätt att enkelt skriva \emph{markup} i textfiler. Metadatan anger att filen innehåller en sång (och inte säg, registret), sångens titel och sångens kategorier. Alla sånger kan då kommas åt programmatiskt för att generera register och kategorisidor.
+ 
+För att göra sidan mobilvänlig med responsiv design används \textsc{css}\footnote{Cascading Style Sheets \cite{css}}-ramverket \emph{Bootstrap} \cite{boot}, som är en samling regler för hemsidans utseende. Reglerna är utformade så att komponenterna beter sig olika beroende på webbläsarens storlek. Tillsammans med Javaskript kan vi skapa den interaktivitet vi behöver. För exempel se ett utkast på \url{http://legopelle.github.io/songs/songs/students-ngen/}. Pröva att variera bredden på webbläsaren.
 
-Punkt 3 löses också av Jekyll eftersom den för samman utseendet med innehållet till färdiga websidor. Dessa sidorna har inget dynamiskt innehåll och representeras av vanliga statiska \textsc{html}-filer som kan distribueras av alla webservrar, så det påverkar inte vårt val av webbserver.
+För att hantera källkoden till webbsidan använder vi versionshanteringsprogrammet Git \cite{git}. Detta använder vi även till för att föra in nya sånger. Genom att automatiskt kompilera webbsidan varje gång en ny version av sidan skickas till servern uppdateras även den publika sidan! Varje sång, eller flera på en gång, behöver bara tas med till nästa version, så hanteras de både av Git samt dyker upp på webbsidan.
 
-Den andra punkten kräver lite mer arbete. Här måste webservern konfigureras för att acceptera input från användaren och skriva till en lokal fil. 
+För att sedan publicera vår hemsida på internet använder vi webbservern \emph{Apache} som är världens vanligaste webbserver \cite{apache}.
+
+%För att websidan skall kunna nås på internet krävs en \emph{webserver}. Mjukvaran måste kunna göra flera saker:
+%\begin{enumerate}
+%    \item Lagra sånger \label{lst:storesongs}
+%    \item Låta nya sånger föras in
+%    \item Rendera sångerna som webbsidor
+%\end{enumerate}
+%
+%Den första punkten kan lösas på flera sätt. Ett sätt är att lagra sångerna i en databas. Ett annat är att lagra dem som textfiler på servern. 
+%
+%Punkt 3 löses också av Jekyll eftersom den för samman utseendet med innehållet till färdiga websidor. Dessa sidorna har inget dynamiskt innehåll och representeras av vanliga statiska \textsc{html}-filer som kan distribueras av alla webservrar, så det påverkar inte vårt val av webbserver.
+%
+%Den andra punkten kräver lite mer arbete. Här måste webservern konfigureras för att acceptera input från användaren och skriva till en lokal fil. 
